@@ -8,6 +8,7 @@ The files and folders are organized as follows:
 * `dev/` is an empty folder where you are expected to output your corresponding `output_*.txt` files.
 * `example/` contains a example input and output files, with some errors purposedly included, that you can use to understand exactly how the evaluation metric works.
 * `submit/` contains a sample submission (actually just the `trial` data splitted accordingly).
+* `testing/` contains the testing files.
 
 ## Development evaluation
 
@@ -35,10 +36,19 @@ python3 score.py gold/ submit/
 
 This script will output a file `score.txt` in the `submit` folder that contains the calculated metrics described in the `Overall evaluation...` section of the competition rules.
 
-## Notes
+## Training
 
 The actual training data is not ready yet. Only the trial data is included in the `gold` folder now. This repository will be updated with the actual gold training files in due time.
 
 You can use the trial data to see a more complex scenario than that presented in the examples, and to begin developing your ideas until the actual training data is ready.
 
 **The trial data is not expected to be part of the final evaluation, just use it for your convenience now.**
+
+## Testing
+
+The testing data is not ready yet, but will be included in due time in the `testing` folder.
+This folder will contain the **test** files divided in the corresponding scenarios:
+
+* `scenario1-ABC` will contain **only** `input_*.txt` files.
+* `scenario2-BC` will contain input files **and** the corresponding `output_A_*.txt` files.
+* `scenario3-C` will contain input files **and** the corresponding `output_A_*.txt` files **and also** the corresponding `output_B_*.txt` files .
