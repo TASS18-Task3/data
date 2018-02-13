@@ -82,8 +82,14 @@ def update(dict_1, dict_2):
 
 
 if __name__ == '__main__':
-    gold = sys.argv[1] if len(sys.argv) > 1 else 'gold'
-    submit = sys.argv[2] if len(sys.argv) > 2 else 'submit'
+    if len(sys.argv) > 1:
+        gold = os.path.join(sys.argv[1], 'ref')
+        submit = os.path.join(sys.argv[1], 'res')
+        output = sys.argv[2]
+    else:
+        gold = 'gold'
+        submit = 'submit'
+        output = '.'
 
     totals1 = collections.defaultdict(lambda: 0)
     totals2 = collections.defaultdict(lambda: 0)
@@ -129,7 +135,7 @@ if __name__ == '__main__':
 
     macro = sum([abc_f1, bc_f1, c_f1]) / 3
 
-    with open(os.path.join(submit, 'scores.txt'), 'w') as fp:
+    with open(os.path.join(output, 'scores.txt'), 'w') as fp:
         fp.write('abc_prec:%.5f\n'% abc_prec)
         fp.write('abc_rec:%.5f\n' % abc_rec)
         fp.write('abc_f1:%.5f\n'  % abc_f1)

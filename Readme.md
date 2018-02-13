@@ -1,4 +1,4 @@
-# Training data for TASS18 Task 3
+# Development data for TASS-2018 Task 3: eHealth Knowledge Discovery
 
 This repository contains the training data for the Task 3 in TASS 2018.
 The files and folders are organized as follows:

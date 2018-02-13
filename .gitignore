@@ -104,4 +104,4 @@ venv.bak/
 
 # End of https://www.gitignore.io/api/python
 
-submit/scores.txt
+scores.txt
