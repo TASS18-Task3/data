@@ -11,7 +11,7 @@ The files and folders are organized as follows:
 
 ## Development evaluation
 
-The file `evaluate.py` performs an automatic evaluation of your output files against the gold files. You can use this script to validate your technique(s). The metrics reported are exactly the same ones that will be used in the final evaluation. This script simply evaluates each pair of gold/dev files separately and outputs detailed information of all the mistakes.
+The file `evaluate.py` performs an automatic evaluation of your output files against the gold files. You can use this script to validate your technique(s). The metrics reported are exactly the same ones that will be used in the final evaluation. This script simply evaluates each pair of gold/dev files separately and outputs detailed information of all the mistakes. This file's output corresponds to the `Development evaluation...` sections in each of the subtasks.
 
 To run it simply use:
 
@@ -27,7 +27,13 @@ python3 evaluate.py example/gold example/dev
 
 ## Final evaluation
 
-The file `score.py` performs the final evaluation exactly as described in the competition rules, i.e., according to the three evaluation scenarios presented. It assumes the gold files are in `gold` and the files to be submitted are in the `submit` folder, according to the folder structure presented there.
+The file `score.py` performs the final evaluation exactly as described in the competition rules, i.e., according to the three evaluation scenarios presented. It assumes the gold files are in `gold` and the files to be submitted are in the `submit` folder, according to the folder structure presented there. This file's output is the one actually used in `Codalab` to rank competitors.
+
+```bash
+python3 score.py gold/ submit/
+```
+
+This script will output a file `score.txt` in the `submit` folder that contains the calculated metrics described in the `Overall evaluation...` section of the competition rules.
 
 ## Notes
 
