@@ -35,8 +35,6 @@ def evaluate(gold_A, gold_B, gold_C, submit_A, submit_B, submit_C):
     )
 
 def evaluate_1(name, gold, submit):
-    gold_input = read_input(os.path.join(gold, 'input_%s' % name))
-
     gold_A = read_phrases(os.path.join(gold, 'output_A_%s' % name))
     gold_B = read_labels(os.path.join(gold, 'output_B_%s' % name))
     gold_C = read_links(os.path.join(gold, 'output_C_%s' % name))
@@ -49,8 +47,6 @@ def evaluate_1(name, gold, submit):
 
 
 def evaluate_2(name, gold, submit):
-    gold_input = read_input(os.path.join(gold, 'input_%s' % name))
-
     gold_A = read_phrases(os.path.join(gold, 'output_A_%s' % name))
     gold_B = read_labels(os.path.join(gold, 'output_B_%s' % name))
     gold_C = read_links(os.path.join(gold, 'output_C_%s' % name))
@@ -63,8 +59,6 @@ def evaluate_2(name, gold, submit):
 
 
 def evaluate_3(name, gold, submit):
-    gold_input = read_input(os.path.join(gold, 'input_%s' % name))
-
     gold_A = read_phrases(os.path.join(gold, 'output_A_%s' % name))
     gold_B = read_labels(os.path.join(gold, 'output_B_%s' % name))
     gold_C = read_links(os.path.join(gold, 'output_C_%s' % name))
