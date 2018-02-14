@@ -123,6 +123,8 @@ submission.zip/
         output_C_trial.txt
 ```
 
+[This file](https://github.com/TASS18-Task3/data/releases/download/trial-v1.0/sample_trial.zip) is a sample `.zip` with exactly the trial output in the exact format that should be uploaded to Codalab.
+
 > **Make sure** not to mistakenly zip the `submit` folder *itself*, but only **it's content**.
 
 
