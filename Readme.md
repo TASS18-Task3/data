@@ -14,29 +14,29 @@ The files and folders are organized as follows:
 
 In the trial phase, we released an example input file with all the relevant output files, that can be used by participants to understand the competition workflow and the files format. All the relevant files are located in the `trial` folder. In this folder you'll find three subfolders:
 
-* `input` contains the input files that you will receive for each evaluation scenario:
-    * `scenario1-ABC` contains the files to be used for the scenario 1 evaluation.
-        * `input_trial.txt`: plain text.
-    * `scenario2-BC` contains the files to be used for the scenario 2 evaluation.
-        * `input_trial.txt`: plain text.
-        * `output_A_trial.txt`: gold output for task A.
-    * `scenario3-C` contains the files to be used for the scenario 3 evaluation.
-        * `input_trial.txt`: plain text.
-        * `output_A_trial.txt`: gold output for task A.
-        * `output_B_trial.txt`: gold output for task B.
+* [`input`](/trial/input) contains the input files that you will receive for each evaluation scenario:
+    * [`scenario1-ABC`](/trial/input/scenario1-ABC) contains the files to be submitted for the scenario 1 evaluation.
+        * [`input_trial.txt`](/trial/input/scenario1-ABC/input_trial.txt) is plain text.
+    * [`scenario2-BC`](/trial/input/scenario2-BC) contains the files to be submitted for the scenario 2 evaluation.
+        * [`input_trial.txt`](/trial/input/scenario2-BC/input_trial.txt) is plain text.
+        * [`output_A_trial.txt`](/trial/input/scenario2-BC/input_A_trial.txt) is the gold output for task A.
+    * [`scenario3-C`](/trial/input/scenario3-C) contains the files to be submitted for the scenario 3 evaluation.
+        * [`input_trial.txt`](/trial/input/scenario3-C/input_trial.txt) is plain text.
+        * [`output_A_trial.txt`](/trial/input/scenario3-C/output_A_trial.txt) is the gold output for task A.
+        * [`output_B_trial.txt`](/trial/input/scenario3-C/output_B_trial.txt) is the gold output for task B.
 
     The purpose of this folder is to illustrate how participants should expect the input files to be structured in the [test phase](#test-phase).
 
-* `submit` contains the outputs files that you should submit for each evaluation scenario:
-    * `scenario1-ABC` contains the files to be submitted for the scenario 1 evaluation.
-        * `input_trial.txt`: plain text.
-    * `scenario2-BC` contains the files to be submitted for the scenario 2 evaluation.
-        * `input_trial.txt`: plain text.
-        * `output_A_trial.txt`: gold output for task A.
-    * `scenario3-C` contains the files to be submitted for the scenario 3 evaluation.
-        * `input_trial.txt`: plain text.
-        * `output_A_trial.txt`: gold output for task A.
-        * `output_A_trial.txt`: gold output for task B.
+* [`submit`](/trial/submit) contains the outputs files that you should submit for each evaluation scenario:
+    * [`scenario1-ABC`] contains the files to be submitted for the scenario 1 evaluation.
+        * [`input_trial.txt`] is plain text.
+    * [`scenario2-BC`] contains the files to be submitted for the scenario 2 evaluation.
+        * [`input_trial.txt`] is plain text.
+        * [`output_A_trial.txt`] is the gold output for task A.
+    * [`scenario3-C`] contains the files to be submitted for the scenario 3 evaluation.
+        * [`input_trial.txt`] is plain text.
+        * [`output_A_trial.txt`] is the gold output for task A.
+        * [`output_B_trial.txt`] is the gold output for task B.
 
     The purpose of this folder is to illustrate how participants should expect the input files to be structured in the [test phase](#test-phase).
 
