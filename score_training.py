@@ -167,13 +167,10 @@ def evaluate_links(gold_links_file, dev_links_file, sentences, gold_phrases, dev
     print("F1: %.2f" % f1)
 
 
-def evaluate(file):
-    gold = sys.argv[1] if len(sys.argv) > 1 else "gold"
-    dev = sys.argv[2] if len(sys.argv) > 2 else "dev"
-
-    input_file = abspath(join(gold, 'input_%s.txt' % file))
-    gold_phrases_file = abspath(join(gold, 'output_A_%s.txt' % file))
-    dev_phrases_file = abspath(join(dev, 'output_A_%s.txt' % file))
+def evaluate(file, folder):
+    input_file = abspath(join(folder, 'input', 'input_%s.txt' % file))
+    gold_phrases_file = abspath(join(folder, 'gold', 'output_A_%s.txt' % file))
+    dev_phrases_file = abspath(join(folder, 'dev', 'output_A_%s.txt' % file))
 
     if not exists(input_file):
         raise ValueError("Input file '%s' not found." % input_file)
@@ -186,8 +183,8 @@ def evaluate(file):
 
     l = evaluate_phrases(input_file, gold_phrases_file, dev_phrases_file)
 
-    gold_labels_file = abspath(join(gold, 'output_B_%s.txt' % file))
-    dev_labels_file = abspath(join(dev, 'output_B_%s.txt' % file))
+    gold_labels_file = abspath(join(folder, 'gold', 'output_B_%s.txt' % file))
+    dev_labels_file = abspath(join(folder, 'dev', 'output_B_%s.txt' % file))
 
     if not exists(gold_labels_file):
         raise ValueError("Gold phrases file '%s' not found." % gold_phrases_file)
@@ -197,8 +194,8 @@ def evaluate(file):
     else:
         evaluate_labels(gold_labels_file, dev_labels_file, *l)
 
-    ref_links_file = abspath(join(gold, 'output_C_%s.txt' % file))
-    eval_links_file = abspath(join(dev, 'output_C_%s.txt' % file))
+    ref_links_file = abspath(join(folder, 'gold', 'output_C_%s.txt' % file))
+    eval_links_file = abspath(join(folder, 'dev', 'output_C_%s.txt' % file))
 
     if not exists(eval_links_file):
         print("\n(!) Skipping Task C: file '%s' not found. Assuming task is not completed yet." % eval_links_file)
@@ -207,9 +204,8 @@ def evaluate(file):
 
 
 if __name__ == '__main__':
-    gold = sys.argv[1] if len(sys.argv) > 1 else "gold"
-    dev = sys.argv[2] if len(sys.argv) > 2 else "dev"
+    folder = sys.argv[1] if len(sys.argv) > 1 else "training"
 
-    for fname in os.listdir(gold):
+    for fname in os.listdir(os.path.join(folder, 'input')):
         if fname.startswith("input_"):
-            evaluate(fname[6:-4])
+            evaluate(fname[6:-4], folder)

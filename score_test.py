@@ -81,8 +81,9 @@ if __name__ == '__main__':
         submit = os.path.join(sys.argv[1], 'res')
         output = sys.argv[2]
     else:
-        gold = 'gold'
-        submit = 'submit'
+        print('(!) Using `trial/submit` as test files and `trial/gold` as reference files.')
+        gold = 'trial/gold'
+        submit = 'trial/submit'
         output = '.'
 
     totals1 = collections.defaultdict(lambda: 0)
@@ -102,9 +103,9 @@ if __name__ == '__main__':
             scenario3 = evaluate_3(name, gold, submit)
             update(scenario3, totals3)
 
-    pprint.pprint(('Scenario 1', totals1))
-    pprint.pprint(('Scenario 2', totals2))
-    pprint.pprint(('Scenario 3', totals3))
+    # pprint.pprint(('Scenario 1', totals1))
+    # pprint.pprint(('Scenario 2', totals2))
+    # pprint.pprint(('Scenario 3', totals3))
 
     correct_1 = sum([totals1['correct_A'], totals1['correct_B'], totals1['correct_C'], 0.5 * totals1['partial_A']])
     subtotal_1 = sum([totals1['partial_A'], totals1['correct_A'], totals1['correct_B'], totals1['incorrect_B'], totals1['correct_C']])
@@ -128,6 +129,17 @@ if __name__ == '__main__':
     c_f1 = 2 * c_prec * c_rec / ( c_prec + c_rec )
 
     macro = sum([abc_f1, bc_f1, c_f1]) / 3
+
+    print('abc_prec:%.5f' % abc_prec)
+    print('abc_rec:%.5f' % abc_rec)
+    print('abc_f1:%.5f' % abc_f1)
+    print('bc_prec:%.5f' % bc_prec)
+    print('bc_rec:%.5f' % bc_rec)
+    print('bc_f1:%.5f' % bc_f1)
+    print('c_prec:%.5f' % c_prec)
+    print('c_rec:%.5f' % c_rec)
+    print('c_f1:%.5f' % c_f1)
+    print('macro:%.5f' % macro)
 
     with open(os.path.join(output, 'scores.txt'), 'w') as fp:
         fp.write('abc_prec:%.5f\n'% abc_prec)
