@@ -79,6 +79,12 @@ if __name__ == '__main__':
     if len(sys.argv) > 1:
         gold = os.path.join(sys.argv[1], 'ref')
         submit = os.path.join(sys.argv[1], 'res')
+
+        sub_submit = os.path.join(submit, 'submit')
+
+        if os.path.exists(sub_submit):
+            submit = sub_submit
+
         output = sys.argv[2]
     else:
         print('(!) Using `trial/submit` as test files and `trial/gold` as reference files.')
