@@ -3,12 +3,42 @@
 This repository contains the training data for the Task 3 in TASS 2018.
 The files and folders are organized as follows:
 
-* `evaluate.py` is a Python 3 script that performs the evaluation (see [below](#evaluation)).
-* `gold/` contains the `input_*.txt` files and the corresponding `output_*.txt` files of the training data.
-* `dev/` is an empty folder where you are expected to output your corresponding `output_*.txt` files.
-* `example/` contains a example input and output files, with some errors purposedly included, that you can use to understand exactly how the evaluation metric works.
-* `submit/` contains a sample submission (actually just the `trial` data splitted accordingly).
-* `testing/` contains the testing files.
+* [`trial`](/TASS18-Task3/data/tree/master/trial) contains relevant files for the trial phase.
+* [`training`](/TASS18-Task3/data/tree/master/training)  contains relevant files for the training phase.
+* [`training_example`](/TASS18-Task3/data/tree/master/training_example)  contains an example training phase, as it appears in the website.
+* [`test`](/TASS18-Task3/data/tree/master/test)  contains relevant files for the test phase.
+* [`score_training.py`](/TASS18-Task3/data/tree/master/score_training.py) is a Python 3 script that provides an evaluation useful for the training pahse (see [below](#training-phase)).
+* [`score_test.py`](/TASS18-Task3/data/tree/master/score_test)  is a Python 3 script that provides the exact same evaluation as used in the Codalab competition (see [below](#trial-phase))
+
+## Trial phase
+
+In the trial phase, we released an example input file with all the relevant output files, that can be used by participants to understand the competition workflow and the files format. All the relevant files are located in the `trial` folder. In this folder you'll find three subfolders:
+
+* `input` contains the input files that you will receive for each evaluation scenario:
+    * `scenario1-ABC` contains the files to be used for the scenario 1 evaluation.
+        * `input_trial.txt`: plain text.
+    * `scenario2-BC` contains the files to be used for the scenario 2 evaluation.
+        * `input_trial.txt`: plain text.
+        * `output_A_trial.txt`: gold output for task A.
+    * `scenario3-C` contains the files to be used for the scenario 3 evaluation.
+        * `input_trial.txt`: plain text.
+        * `output_A_trial.txt`: gold output for task A.
+        * `output_B_trial.txt`: gold output for task B.
+
+    The purpose of this folder is to illustrate how participants should expect the input files to be structured in the [test phase](#test-phase).
+
+* `submit` contains the outputs files that you should submit for each evaluation scenario:
+    * `scenario1-ABC` contains the files to be submitted for the scenario 1 evaluation.
+        * `input_trial.txt`: plain text.
+    * `scenario2-BC` contains the files to be submitted for the scenario 2 evaluation.
+        * `input_trial.txt`: plain text.
+        * `output_A_trial.txt`: gold output for task A.
+    * `scenario3-C` contains the files to be submitted for the scenario 3 evaluation.
+        * `input_trial.txt`: plain text.
+        * `output_A_trial.txt`: gold output for task A.
+        * `output_A_trial.txt`: gold output for task B.
+
+    The purpose of this folder is to illustrate how participants should expect the input files to be structured in the [test phase](#test-phase).
 
 ## Development evaluation
 
