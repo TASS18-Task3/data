@@ -3,12 +3,12 @@
 This repository contains the training data for the Task 3 in TASS 2018.
 The files and folders are organized as follows:
 
-* [`trial`](/TASS18-Task3/data/tree/master/trial) contains relevant files for the trial phase.
-* [`training`](/TASS18-Task3/data/tree/master/training)  contains relevant files for the training phase.
-* [`training_example`](/TASS18-Task3/data/tree/master/training_example)  contains an example training phase, as it appears in the website.
-* [`test`](/TASS18-Task3/data/tree/master/test)  contains relevant files for the test phase.
-* [`score_training.py`](/TASS18-Task3/data/tree/master/score_training.py) is a Python 3 script that provides an evaluation useful for the training pahse (see [below](#training-phase)).
-* [`score_test.py`](/TASS18-Task3/data/tree/master/score_test)  is a Python 3 script that provides the exact same evaluation as used in the Codalab competition (see [below](#trial-phase))
+* [`trial`](/trial) contains relevant files for the trial phase.
+* [`training`](/training)  contains relevant files for the training phase.
+* [`training_example`](/training_example)  contains an example training phase, as it appears in the website.
+* [`test`](/test)  contains relevant files for the test phase.
+* [`score_training.py`](/score_training.py) is a Python 3 script that provides an evaluation useful for the training pahse (see [below](#training-phase)).
+* [`score_test.py`](/score_test.py)  is a Python 3 script that provides the exact same evaluation as used in the Codalab competition (see [below](#trial-phase))
 
 ## Trial phase
 
