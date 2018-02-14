@@ -140,3 +140,12 @@ submission.zip/
 <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
 <br />Based on a work at
 <a xmlns:dct="http://purl.org/dc/terms/" href="https://github.com/tass18-task3/data" rel="dct:source">https://github.com/tass18-task3/data</a>.
+
+### External resources from MedlinePlus
+
+Corpus data has been gathered from [MedlinePlus.gov](https://medlineplus.gov/index.html) and manually post-processed.
+
+**NLM Copyright Information**
+
+> Government information at NLM Web sites is in the public domain. Public domain information may be freely distributed and copied, but it is requested that in any subsequent use the National Library of Medicine (NLM) be given appropriate acknowledgement. When using NLM Web sites, you may encounter documents, illustrations, photographs, or other information resources contributed or licensed by private individuals, companies, or organizations that may be protected by U.S. and foreign copyright laws. Transmission or reproduction of protected items beyond that allowed by fair use as defined in the copyright laws requires the written permission of the copyright owners. Specific NLM Web sites containing protected information provide additional notification of conditions associated with its use.
+
