@@ -78,21 +78,21 @@ def evaluate_labels(gold_labels_file, dev_labels_file, sentences, gold_phrases, 
         item["text"] = get_span(sentences, item)
         print('  - {label} "{text}" from {start} to {end}.'.format(**item))
 
-    print('\n* Incorrect (%i):' % len(comparison['incorrect']))
+    print('* Incorrect (%i):' % len(comparison['incorrect']))
     for item in comparison['incorrect']:
         item["start"] = dev_phrases[item['fidx']]["start"]
         item["end"] = dev_phrases[item['fidx']]["end"]
         item["text"] = get_span(sentences, item)
         print('  - {label} "{text}" from {start} to {end} (correct is {correct}).'.format(**item))
 
-    print('\n* Missing (%i):' % len(comparison['missing']))
+    print('* Missing (%i):' % len(comparison['missing']))
     for item in comparison['missing']:
         item["start"] = gold_phrases[item['id']]["start"]
         item["end"] = gold_phrases[item['id']]["end"]
         item["text"] = get_span(sentences, item)
         print('  - {label} "{text}" from {start} to {end}.'.format(**item))
 
-    print('\n* Spurious (%i):' % len(comparison['spurious']))
+    print('* Spurious (%i):' % len(comparison['spurious']))
     for item in comparison['spurious']:
         item["start"] = dev_phrases[item['fidx']]["start"]
         item["end"] = dev_phrases[item['fidx']]["end"]

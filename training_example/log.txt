@@ -1,0 +1,96 @@
+# Task A (detecting phrases)
+  input file:        /home/apiad/Projects/tass18/data/training_example/input/input_example.txt
+  gold file: /home/apiad/Projects/tass18/data/training_example/gold/output_A_example.txt
+  dev file:  /home/apiad/Projects/tass18/data/training_example/dev/output_A_example.txt
+
+* Correct (13):
+  - "asma" from 3 to 7.
+  - "vías respiratorias" from 19 to 37.
+  - "pulmones" from 43 to 51.
+  - "asma" from 67 to 71.
+  - "enfermedad" from 79 to 89.
+  - "ataque de asma" from 94 to 108.
+  - "produce" from 112 to 119.
+  - "empeoran" from 140 to 148.
+  - "síntomas" from 154 to 162.
+  - "tratamiento" from 168 to 179.
+  - "dependen" from 180 to 188.
+  - "avanzada" from 216 to 224.
+  - "enfermedad" from 237 to 247.
+* Partial (2):
+  - "síntomas" from 131 to 139 vs "los síntomas" from 127 to 139.
+  - "tipo" from 193 to 197 vs "tipo de cáncer" from 193 to 207.
+* Missing (3):
+  - "afecta" from 8 to 14.
+  - "hinchan" from 55 to 62.
+  - "cáncer" from 201 to 207.
+* Spurious (1):
+  - "esté" from 229 to 233.
+
+Precision = 0.93
+Recall = 0.82
+F1 Score = 0.87
+
+# Taks B (labeling phrases)
+  gold file: /home/apiad/Projects/tass18/data/training_example/gold/output_B_example.txt
+  dev file:  /home/apiad/Projects/tass18/data/training_example/dev/output_B_example.txt
+
+* Correct (15):
+  - Concept "asma" from 3 to 7.
+  - Concept "vías respiratorias" from 19 to 37.
+  - Concept "pulmones" from 43 to 51.
+  - Concept "asma" from 67 to 71.
+  - Concept "enfermedad" from 79 to 89.
+  - Concept "ataque de asma" from 94 to 108.
+  - Action "produce" from 112 to 119.
+  - Concept "los síntomas" from 127 to 139.
+  - Action "empeoran" from 140 to 148.
+  - Concept "síntomas" from 154 to 162.
+  - Concept "tratamiento" from 168 to 179.
+  - Action "dependen" from 180 to 188.
+  - Concept "tipo de cáncer" from 193 to 207.
+  - Concept "enfermedad" from 237 to 247.
+  - Concept "avanzada" from 216 to 224.
+* Incorrect (0):
+* Missing (3):
+  - Action "afecta" from 8 to 14.
+  - Action "hinchan" from 55 to 62.
+  - Concept "cáncer" from 201 to 207.
+* Spurious (1):
+  - Action "esté" from 229 to 233.
+
+Micro-accuracy: 1.00
+Macro-accuracy: 0.79
+Precision: 0.94
+Recall: 0.83
+F1: 0.88
+
+# Taks C (linking)
+  gold file: /home/apiad/Projects/tass18/data/training_example/gold/output_C_example.txt
+  dev file:  /home/apiad/Projects/tass18/data/training_example/dev/output_C_example.txt
+
+* Correct (6):
+  - subject involving "produce" and "empeoran".
+  - target involving "produce" and "ataque de asma".
+  - subject involving "dependen" and "síntomas".
+  - target involving "dependen" and "tipo".
+  - target involving "dependen" and "avanzada".
+  - subject involving "dependen" and "tratamiento".
+* Missing (8):
+  - is-a involving "asma" and "enfermedad".
+  - property-of involving "avanzada" and "enfermedad".
+  - property-of involving "tipo" and "cáncer".
+  - subject involving "afecta" and "asma".
+  - target involving "afecta" and "vías respiratorias".
+  - subject involving "hinchan" and "pulmones".
+  - target involving "hinchan" and "pulmones".
+  - target involving "empeoran" and "síntomas".
+* Spurious (4):
+  - part-of involving "asma" and "vías respiratorias".
+  - subject involving "empeoran" and "los síntomas".
+  - subject involving "esté" and "enfermedad".
+  - target involving "esté" and "avanzada".
+
+Precision: 0.60
+Recall: 0.43
+F1: 0.50
