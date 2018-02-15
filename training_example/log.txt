@@ -1,7 +1,7 @@
 # Task A (detecting phrases)
-  input file:        /home/apiad/Projects/tass18/data/training_example/input/input_example.txt
-  gold file: /home/apiad/Projects/tass18/data/training_example/gold/output_A_example.txt
-  dev file:  /home/apiad/Projects/tass18/data/training_example/dev/output_A_example.txt
+# input file: /home/apiad/Projects/tass18/data/training_example/input/input_example.txt
+# gold file:  /home/apiad/Projects/tass18/data/training_example/gold/output_A_example.txt
+# dev file:   /home/apiad/Projects/tass18/data/training_example/dev/output_A_example.txt
 
 * Correct (13):
   - "asma" from 3 to 7.
@@ -32,8 +32,8 @@ Recall = 0.82
 F1 Score = 0.87
 
 # Taks B (labeling phrases)
-  gold file: /home/apiad/Projects/tass18/data/training_example/gold/output_B_example.txt
-  dev file:  /home/apiad/Projects/tass18/data/training_example/dev/output_B_example.txt
+# gold file: /home/apiad/Projects/tass18/data/training_example/gold/output_B_example.txt
+# dev file:  /home/apiad/Projects/tass18/data/training_example/dev/output_B_example.txt
 
 * Correct (15):
   - Concept "asma" from 3 to 7.
@@ -66,8 +66,8 @@ Recall: 0.83
 F1: 0.88
 
 # Taks C (linking)
-  gold file: /home/apiad/Projects/tass18/data/training_example/gold/output_C_example.txt
-  dev file:  /home/apiad/Projects/tass18/data/training_example/dev/output_C_example.txt
+# gold file: /home/apiad/Projects/tass18/data/training_example/gold/output_C_example.txt
+# dev file:  /home/apiad/Projects/tass18/data/training_example/dev/output_C_example.txt
 
 * Correct (6):
   - subject involving "produce" and "empeoran".

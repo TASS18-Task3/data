@@ -25,9 +25,9 @@ def evaluate_phrases(input_file, gold_phrases_file, dev_phrases_file):
     comparison = compare_phrases(gold_phrases, dev_phrases)
 
     print("# Task A (detecting phrases)")
-    print("  input file:        %s" % input_file)
-    print("  gold file: %s" % gold_phrases_file)
-    print("  dev file:  %s" % dev_phrases_file)
+    print("# input file: %s" % input_file)
+    print("# gold file:  %s" % gold_phrases_file)
+    print("# dev file:   %s" % dev_phrases_file)
 
     print('\n* Correct (%i):' % len(comparison['correct']))
     for item in comparison['correct']:
@@ -66,8 +66,8 @@ def evaluate_labels(gold_labels_file, dev_labels_file, sentences, gold_phrases, 
     dev_labels = read_labels(dev_labels_file)
 
     print("\n# Taks B (labeling phrases)")
-    print("  gold file: %s" % gold_labels_file)
-    print("  dev file:  %s" % dev_labels_file)
+    print("# gold file: %s" % gold_labels_file)
+    print("# dev file:  %s" % dev_labels_file)
 
     comparison = compare_labels(gold_labels, dev_labels, mapping)
 
@@ -119,8 +119,8 @@ def evaluate_links(gold_links_file, dev_links_file, sentences, gold_phrases, dev
     dev_links = read_links(dev_links_file)
 
     print("\n# Taks C (linking)")
-    print("  gold file: %s" % gold_links_file)
-    print("  dev file:  %s" % dev_links_file)
+    print("# gold file: %s" % gold_links_file)
+    print("# dev file:  %s" % dev_links_file)
 
     comparison = compare_links(gold_links, dev_links, mapping)
 
