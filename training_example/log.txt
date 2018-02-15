@@ -76,6 +76,7 @@ F1: 0.88
   - target involving "dependen" and "tipo".
   - target involving "dependen" and "avanzada".
   - subject involving "dependen" and "tratamiento".
+* Partial(0):
 * Missing (8):
   - is-a involving "asma" and "enfermedad".
   - property-of involving "avanzada" and "enfermedad".
