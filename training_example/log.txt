@@ -1,7 +1,7 @@
 # Task A (detecting phrases)
-# input file: training_example/input/input_example.txt
-# gold file:  training_example/gold/output_A_example.txt
-# dev file:   training_example/dev/output_A_example.txt
+# input file: input/input_example.txt
+# gold file:  gold/output_A_example.txt
+# dev file:   dev/output_A_example.txt
 
 * Correct (13):
   - "asma" from 3 to 7.
@@ -20,20 +20,21 @@
 * Partial (2):
   - "síntomas" from 131 to 139 vs "los síntomas" from 127 to 139.
   - "tipo" from 193 to 197 vs "tipo de cáncer" from 193 to 207.
-* Missing (3):
+* Missing (4):
   - "afecta" from 8 to 14.
+  - "vías" from 19 to 23.
   - "hinchan" from 55 to 62.
   - "cáncer" from 201 to 207.
 * Spurious (1):
   - "esté" from 229 to 233.
 
 Precision = 0.93
-Recall = 0.82
-F1 Score = 0.87
+Recall = 0.78
+F1 Score = 0.85
 
 # Taks B (labeling phrases)
-# gold file: training_example/gold/output_B_example.txt
-# dev file:  training_example/dev/output_B_example.txt
+# gold file: gold/output_B_example.txt
+# dev file:  dev/output_B_example.txt
 
 * Correct (15):
   - Concept "asma" from 3 to 7.
@@ -48,50 +49,51 @@ F1 Score = 0.87
   - Concept "síntomas" from 154 to 162.
   - Concept "tratamiento" from 168 to 179.
   - Action "dependen" from 180 to 188.
-  - Concept "tipo de cáncer" from 193 to 207.
   - Concept "enfermedad" from 237 to 247.
   - Concept "avanzada" from 216 to 224.
+  - Concept "tipo de cáncer" from 193 to 207.
 * Incorrect (0):
-* Missing (3):
+* Missing (4):
   - Action "afecta" from 8 to 14.
   - Action "hinchan" from 55 to 62.
   - Concept "cáncer" from 201 to 207.
+  - Concept "vías" from 19 to 23.
 * Spurious (1):
   - Action "esté" from 229 to 233.
 
 Micro-accuracy: 1.00
-Macro-accuracy: 0.79
+Macro-accuracy: 0.75
 Precision: 0.94
-Recall: 0.83
-F1: 0.88
+Recall: 0.79
+F1: 0.86
 
 # Taks C (linking)
-# gold file: training_example/gold/output_C_example.txt
-# dev file:  training_example/dev/output_C_example.txt
+# gold file: gold/output_C_example.txt
+# dev file:  dev/output_C_example.txt
 
-* Correct (6):
+* Correct (4):
   - subject involving "produce" and "empeoran".
   - target involving "produce" and "ataque de asma".
-  - subject involving "dependen" and "síntomas".
-  - target involving "dependen" and "tipo".
-  - target involving "dependen" and "avanzada".
   - subject involving "dependen" and "tratamiento".
-* Partial(0):
-* Missing (8):
+  - target involving "dependen" and "tipo".
+* Missing (9):
   - is-a involving "asma" and "enfermedad".
   - property-of involving "avanzada" and "enfermedad".
   - property-of involving "tipo" and "cáncer".
+  - is-a involving "vías respiratorias" and "vías".
   - subject involving "afecta" and "asma".
   - target involving "afecta" and "vías respiratorias".
   - subject involving "hinchan" and "pulmones".
   - target involving "hinchan" and "pulmones".
   - target involving "empeoran" and "síntomas".
-* Spurious (4):
+* Spurious (6):
   - part-of involving "asma" and "vías respiratorias".
   - subject involving "empeoran" and "los síntomas".
+  - subject involving "dependen" and "síntomas".
+  - target involving "dependen" and "avanzada".
   - subject involving "esté" and "enfermedad".
   - target involving "esté" and "avanzada".
 
-Precision: 0.60
-Recall: 0.43
-F1: 0.50
+Precision: 0.40
+Recall: 0.31
+F1: 0.35
