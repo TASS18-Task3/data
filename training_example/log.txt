@@ -3,97 +3,102 @@
 # gold file:  gold/output_A_example.txt
 # dev file:   dev/output_A_example.txt
 
-* Correct (13):
+* Correct (15):
   - "asma" from 3 to 7.
-  - "vías respiratorias" from 19 to 37.
+  - "afecta" from 8 to 14.
+  - "vías" from 19 to 23.
   - "pulmones" from 43 to 51.
+  - "hinchan" from 55 to 62.
   - "asma" from 67 to 71.
   - "enfermedad" from 79 to 89.
   - "ataque de asma" from 94 to 108.
   - "produce" from 112 to 119.
-  - "empeoran" from 140 to 148.
+  - "síntomas" from 131 to 139.
   - "síntomas" from 154 to 162.
   - "tratamiento" from 168 to 179.
   - "dependen" from 180 to 188.
   - "avanzada" from 216 to 224.
   - "enfermedad" from 237 to 247.
-* Partial (2):
-  - "síntomas" from 131 to 139 vs "los síntomas" from 127 to 139.
-  - "tipo" from 193 to 197 vs "tipo de cáncer" from 193 to 207.
+* Partial (1):
+  - "cáncer" from 201 to 207 vs "tipo de cáncer" from 193 to 207.
 * Missing (4):
-  - "afecta" from 8 to 14.
-  - "vías" from 19 to 23.
-  - "hinchan" from 55 to 62.
-  - "cáncer" from 201 to 207.
-* Spurious (1):
-  - "esté" from 229 to 233.
+  - "vías respiratorias" from 19 to 37.
+  - "asma" from 104 to 108.
+  - "empeoran" from 140 to 148.
+  - "tipo" from 193 to 197.
+* Spurious (2):
+  - "respiratorias" from 24 to 37.
+  - "es" from 72 to 74.
 
-Precision = 0.93
-Recall = 0.78
-F1 Score = 0.85
+Precision = 0.89
+Recall = 0.79
+F1 Score = 0.84
 
 # Taks B (labeling phrases)
 # gold file: gold/output_B_example.txt
 # dev file:  dev/output_B_example.txt
 
-* Correct (15):
+* Correct (16):
   - Concept "asma" from 3 to 7.
-  - Concept "vías respiratorias" from 19 to 37.
+  - Action "afecta" from 8 to 14.
+  - Concept "vías" from 19 to 23.
   - Concept "pulmones" from 43 to 51.
+  - Action "hinchan" from 55 to 62.
   - Concept "asma" from 67 to 71.
   - Concept "enfermedad" from 79 to 89.
   - Concept "ataque de asma" from 94 to 108.
   - Action "produce" from 112 to 119.
-  - Concept "los síntomas" from 127 to 139.
-  - Action "empeoran" from 140 to 148.
+  - Concept "síntomas" from 131 to 139.
   - Concept "síntomas" from 154 to 162.
   - Concept "tratamiento" from 168 to 179.
   - Action "dependen" from 180 to 188.
-  - Concept "enfermedad" from 237 to 247.
-  - Concept "avanzada" from 216 to 224.
   - Concept "tipo de cáncer" from 193 to 207.
+  - Concept "avanzada" from 216 to 224.
+  - Concept "enfermedad" from 237 to 247.
 * Incorrect (0):
 * Missing (4):
-  - Action "afecta" from 8 to 14.
-  - Action "hinchan" from 55 to 62.
-  - Concept "cáncer" from 201 to 207.
-  - Concept "vías" from 19 to 23.
-* Spurious (1):
-  - Action "esté" from 229 to 233.
+  - Concept "vías respiratorias" from 19 to 37.
+  - Concept "asma" from 104 to 108.
+  - Action "empeoran" from 140 to 148.
+  - Concept "tipo" from 193 to 197.
+* Spurious (2):
+  - Action "es" from 72 to 74.
+  - Concept "respiratorias" from 24 to 37.
 
 Micro-accuracy: 1.00
-Macro-accuracy: 0.75
-Precision: 0.94
-Recall: 0.79
-F1: 0.86
+Macro-accuracy: 0.73
+Precision: 0.89
+Recall: 0.80
+F1: 0.84
 
 # Taks C (linking)
 # gold file: gold/output_C_example.txt
 # dev file:  dev/output_C_example.txt
 
 * Correct (4):
-  - subject involving "produce" and "empeoran".
+  - subject involving "afecta" and "asma".
+  - target involving "hinchan" and "pulmones".
   - target involving "produce" and "ataque de asma".
   - subject involving "dependen" and "tratamiento".
-  - target involving "dependen" and "tipo".
 * Missing (9):
-  - is-a involving "asma" and "enfermedad".
-  - property-of involving "avanzada" and "enfermedad".
   - property-of involving "tipo" and "cáncer".
+  - property-of involving "avanzada" and "enfermedad".
   - is-a involving "vías respiratorias" and "vías".
-  - subject involving "afecta" and "asma".
+  - is-a involving "asma" and "enfermedad".
   - target involving "afecta" and "vías respiratorias".
   - subject involving "hinchan" and "pulmones".
-  - target involving "hinchan" and "pulmones".
+  - subject involving "produce" and "empeoran".
   - target involving "empeoran" and "síntomas".
-* Spurious (6):
-  - part-of involving "asma" and "vías respiratorias".
-  - subject involving "empeoran" and "los síntomas".
-  - subject involving "dependen" and "síntomas".
-  - target involving "dependen" and "avanzada".
-  - subject involving "esté" and "enfermedad".
-  - target involving "esté" and "avanzada".
+  - target involving "dependen" and "tipo".
+* Spurious (7):
+  - is-a involving "avanzada" and "enfermedad".
+  - property-of involving "respiratorias" and "vías".
+  - target involving "afecta" and "vías".
+  - subject involving "es" and "asma".
+  - target involving "es" and "enfermedad".
+  - subject involving "produce" and "síntomas".
+  - target involving "dependen" and "tipo de cáncer".
 
-Precision: 0.40
+Precision: 0.36
 Recall: 0.31
-F1: 0.35
+F1: 0.33
