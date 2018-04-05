@@ -77,7 +77,7 @@ During the training phase the folder `training` will contain the reference files
 
 ### Training data statistics
 
-The current version of the training dataset contains a total of **XXX sentences** and **YYY annotations**. More details are provided in the next tables:
+The current version of the training dataset contains a total of **559 sentences** and **5673 annotations**. More details are provided in the next tables:
 
 Entity | 3276
 -------|-----
