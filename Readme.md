@@ -75,7 +75,26 @@ During the training phase the folder `training` will contain the reference files
 * `gold` contains all the reference `output_*.txt` files for the three tasks, that you should use to train your models.
 * `dev` is an empty folder where you are expected to place your own `output_*.txt` for using the supplied [evaluation script](/score_training.py)
 
-> **NOTE** the training data is not ready yet, in its place we are distributing an `example_training` folder that follows the same structure, so that participants can test the evaluation script and get used to the workflow and formats.
+### Training data statistics
+
+The current version of the training dataset contains a total of **XXX sentences** and **YYY annotations**. More details are provided in the next tables:
+
+Entity | 3276
+-------|-----
+Action | 849
+Concept | 2427
+
+Relation | 1012
+---------|-----
+Is-a | 434
+Part-of | 149
+Property-of | 399
+Same-as | 30
+
+Roles | 1385
+---------|-----
+Subjects | 599
+Targets | 786
 
 ### Training evaluation
 
