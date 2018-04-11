@@ -40,32 +40,7 @@ In the trial phase, we are releasing an example input file and all the relevant 
 
 * [`gold`](/trial/gold) contains the reference files used by the competition evaluator to compare against and score the submitted files. These are just the plain text and outputs for each of the tasks.
 
-### Trial submissions
 
-During the Trial phase you are expected to submit this trial outputs into Codalab to test the workflow and get used to the formats. Please make sure to try at least once to submit these files on your own. To prepare a submission, you should zip the contents on the `submit` folder in a `.zip` file and send them through Codalab's interface. The content of the `zip` file should be **only** the three folders `scenario*` with their respective content, as illustrated below:
-
-```
-submission.zip/
-    scenario1-ABC/
-        output_A_trial.txt
-        output_B_trial.txt
-        output_C_trial.txt
-    scenario2-BC/
-        output_B_trial.txt
-        output_C_trial.txt
-    scenario3-C/
-        output_C_trial.txt
-```
-
-[This file](https://github.com/TASS18-Task3/data/releases/download/trial-v1.0/sample_trial.zip) is a sample `.zip` with exactly the trial output in the exact format that should be uploaded to Codalab.
-
-> **Make sure** not to mistakenly zip the `submit` folder *itself*, but only **it's content**.
-
-### Trial score
-
-The file `score_test.py` performs the final evaluation exactly as described in the competition rules, i.e., according to the three evaluation scenarios presented. It assumes the reference files are in a `gold` subdirectory and the files to be submitted are in the `submit` folder, according to the folder structure presented there. This file's output is the one actually used in `Codalab` to rank competitors.
-
-This script will output a file `score.txt` that contains the calculated metrics described in the `Overall evaluation...` section of the competition rules.
 
 ## Training phase
 
@@ -109,8 +84,47 @@ python3 score_training.py [training-folder]
 If the optional arg `training-folder` is provided, then the files are looked for in that folders instead of the default `training`. You can use these options to test different variants or to see the evaluation for the example files, by running:
 
 ```bash
-python3 evaluate.py training_example
+python3 score_training.py training_example
 ```
+
+### Training submissions
+
+During the Training phase you are expected to submit the outputs your technique produces on the training set into Codalab to test the workflow and get used to the formats. Please make sure to try at least once to submit these files on your own. To prepare a submission, you should zip the contents on the `dev` folder in a `.zip` file and send them through Codalab's interface. The content of the `zip` file should be **only** the three folders `scenario*` with their respective content, as illustrated below:
+
+```
+submission.zip/
+    scenario1-ABC/
+        output_A_*.txt
+        output_B_*.txt
+        output_C_*.txt
+    scenario2-BC/
+        output_B_*.txt
+        output_C_*.txt
+    scenario3-C/
+        output_C_*.txt
+```
+
+> **Make sure** not to mistakenly zip the `dev` folder *itself*, but only **it's content**.
+
+For simplicity, there is `Makefile` that creates the right `zip`. Just running `make` inside the projects root folder should work.
+
+### Baseline implementation
+
+Inside the `baseline` folder you will find a naive implementation of the whole process. This implementation simply counts the number of occurrences of all concepts, actions and relations, and uses these statistics to match the exact same occurrences. Hence, it can be used as a minimal baseline of the expected score in each evaluation scenario.
+
+To run it, `cd` into the `baseline` folder and execute:
+
+```bash
+python3 main.py
+```
+
+> **(!) BEWARE** that running this script will **overwrite** your `dev` folder with its output.
+
+### Training score
+
+The file `score_test.py` performs the final evaluation exactly as described in the competition rules, i.e., according to the three evaluation scenarios presented. It assumes the reference files are in a `gold` subdirectory and the files to be submitted are in the `dev` folder, according to the folder structure presented there. This file's output is the one actually used in `Codalab` to rank competitors.
+
+This script will output a file `score.txt` that contains the calculated metrics described in the `Overall evaluation...` section of the competition rules.
 
 ## Testing phase
 

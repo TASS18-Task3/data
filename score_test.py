@@ -87,18 +87,18 @@ if __name__ == '__main__':
 
         output = sys.argv[2]
     else:
-        print('(!) Using `trial/submit` as test files and `trial/gold` as reference files.')
-        gold = 'trial/gold'
-        submit = 'trial/submit'
+        print('(!) Using `training/dev` as test files and `training/gold` as reference files.')
+        gold = 'training/gold'
+        submit = 'training/dev'
         output = '.'
 
-    totals1 = collections.defaultdict(lambda: 0)
-    totals2 = collections.defaultdict(lambda: 0)
-    totals3 = collections.defaultdict(lambda: 0)
+    totals1 = collections.defaultdict(lambda: 0.0) # init with float to force float division
+    totals2 = collections.defaultdict(lambda: 0.0)
+    totals3 = collections.defaultdict(lambda: 0.0)
 
     for fname in os.listdir(gold):
-        if fname.startswith('input_'):
-            name = fname[6:]
+        if fname.startswith('output_A_'):
+            name = fname[9:]
 
             scenario1 = evaluate_1(name, gold, submit)
             update(scenario1, totals1)
