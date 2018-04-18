@@ -76,16 +76,26 @@ def update(dict_1, dict_2):
 
 
 if __name__ == '__main__':
+    TESTING = False
+
     if len(sys.argv) > 1:
-        gold = os.path.join(sys.argv[1], 'ref')
-        submit = os.path.join(sys.argv[1], 'res')
+        TESTING = True
 
-        sub_submit = os.path.join(submit, 'submit')
+        if sys.argv[1] == '--test':
+            print('(!) Using `test/submit` as test files and `test/gold` as reference files.')
+            gold = 'test/gold'
+            submit = 'test/submit'
+            output = '.'
+        else:
+            gold = os.path.join(sys.argv[1], 'ref')
+            submit = os.path.join(sys.argv[1], 'res')
 
-        if os.path.exists(sub_submit):
-            submit = sub_submit
+            sub_submit = os.path.join(submit, 'submit')
 
-        output = sys.argv[2]
+            if os.path.exists(sub_submit):
+                submit = sub_submit
+
+            output = sys.argv[2]
     else:
         print('(!) Using `training/submit` as test files and `training/gold` as reference files.')
         gold = 'training/gold'
@@ -96,18 +106,29 @@ if __name__ == '__main__':
     totals2 = collections.defaultdict(lambda: 0.0)
     totals3 = collections.defaultdict(lambda: 0.0)
 
-    for fname in os.listdir(gold):
-        if fname.startswith('output_A_'):
-            name = fname[9:]
+    if TESTING:
+        scenario1 = evaluate_1('scenario1.txt', os.path.join(gold, 'scenario1-ABC'), submit)
+        update(scenario1, totals1)
 
-            scenario1 = evaluate_1(name, gold, submit)
-            update(scenario1, totals1)
+        scenario2 = evaluate_2('scenario2.txt', os.path.join(gold, 'scenario2-BC'), submit)
+        update(scenario2, totals2)
 
-            scenario2 = evaluate_2(name, gold, submit)
-            update(scenario2, totals2)
+        scenario3 = evaluate_3('scenario3.txt', os.path.join(gold, 'scenario3-C'), submit)
+        update(scenario3, totals3)
 
-            scenario3 = evaluate_3(name, gold, submit)
-            update(scenario3, totals3)
+    else:
+        for fname in os.listdir(gold):
+            if fname.startswith('output_A_'):
+                name = fname[9:]
+
+                scenario1 = evaluate_1(name, gold, submit)
+                update(scenario1, totals1)
+
+                scenario2 = evaluate_2(name, gold, submit)
+                update(scenario2, totals2)
+
+                scenario3 = evaluate_3(name, gold, submit)
+                update(scenario3, totals3)
 
     # pprint.pprint(('Scenario 1', totals1))
     # pprint.pprint(('Scenario 2', totals2))

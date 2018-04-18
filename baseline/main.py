@@ -53,6 +53,7 @@ def process_file_C(input_fname, gold_fileA, gold_fileB, output_dir=OUTPUT_DIR_C)
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('input', metavar='INPUT', nargs='?', default=INPUT_DIR, help='Process INPUT file')
+    parser.add_argument('--test', action='store_true', help='Run on the test set')
     parser.add_argument('-t','--train', metavar='DIR', dest='train', default=TRAINING_DIR, action='store', help='Train from DIR directory')
     args = parser.parse_args(sys.argv[1:])
 
@@ -61,7 +62,31 @@ def main():
         trainB(INPUT_DIR, args.train)
         trainC(INPUT_DIR, args.train)
 
-    if args.input:
+    if args.test:
+        TEST_DIR = "../test/input/"
+        SUBMIT_DIR = "../test/submit/"
+
+        # Scenario 1
+        input_fname = os.path.join(TEST_DIR, 'scenario1-ABC', 'input_scenario1.txt')
+        process_file_ABC(input_fname, os.path.join(SUBMIT_DIR, 'scenario1-ABC'))
+
+        # Scenario 2
+        input_fname = os.path.join(TEST_DIR, 'scenario2-BC', 'input_scenario2.txt')
+        gold_file_A = os.path.join(TEST_DIR, 'scenario2-BC', 'output_A_scenario2.txt')
+        process_file_BC(input_fname, gold_file_A, os.path.join(SUBMIT_DIR, 'scenario2-BC'))
+
+        # Scenario 3
+        input_fname = os.path.join(TEST_DIR, 'scenario3-C', 'input_scenario3.txt')
+        gold_file_A = os.path.join(TEST_DIR, 'scenario3-C', 'output_A_scenario3.txt')
+        gold_file_B = os.path.join(TEST_DIR, 'scenario3-C', 'output_B_scenario3.txt')
+        process_file_C(input_fname, gold_file_A, gold_file_B, os.path.join(SUBMIT_DIR, 'scenario3-C'))
+
+        # gold_fileA = output_fname(input_fname, OUTPUT_A_PREFIX, TRAINING_DIR)
+        # gold_fileB = output_fname(input_fname, OUTPUT_B_PREFIX, TRAINING_DIR)
+        # process_file_BC(input_fname, gold_fileA)
+        # process_file_C(input_fname, gold_fileA, gold_fileB)
+
+    elif args.input:
         if os.path.isdir(args.input):
             for input_fname in os.listdir(args.input):
                 input_fname = os.path.join(args.input, input_fname)
