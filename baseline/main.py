@@ -9,9 +9,9 @@ from mainB import train as trainB
 from mainC import test as testC
 from mainC import train as trainC
 
-OUTPUT_DIR_ABC = '../training/dev/scenario1-ABC'
-OUTPUT_DIR_BC = '../training/dev/scenario2-BC'
-OUTPUT_DIR_C = '../training/dev/scenario3-C'
+OUTPUT_DIR_ABC = '../training/submit/scenario1-ABC'
+OUTPUT_DIR_BC = '../training/submit/scenario2-BC'
+OUTPUT_DIR_C = '../training/submit/scenario3-C'
 
 INPUT_DIR = '../training/input'
 TRAINING_DIR = '../training/gold'

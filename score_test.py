@@ -87,9 +87,9 @@ if __name__ == '__main__':
 
         output = sys.argv[2]
     else:
-        print('(!) Using `training/dev` as test files and `training/gold` as reference files.')
+        print('(!) Using `training/submit` as test files and `training/gold` as reference files.')
         gold = 'training/gold'
-        submit = 'training/dev'
+        submit = 'training/submit'
         output = '.'
 
     totals1 = collections.defaultdict(lambda: 0.0) # init with float to force float division

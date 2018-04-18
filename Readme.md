@@ -7,6 +7,7 @@ The files and folders are organized as follows:
 * [`training`](/training)  contains relevant files for the training phase.
 * [`training_example`](/training_example)  contains an example training phase, as it appears in the website.
 * [`test`](/test)  contains relevant files for the test phase.
+* [`develop`](/develop)  contains additional training files useful for fine-tunning or model selection.
 * [`score_training.py`](/score_training.py) is a Python 3 script that provides an evaluation useful for the training pahse (see [below](#training-phase)).
 * [`score_test.py`](/score_test.py)  is a Python 3 script that provides the exact same evaluation as used in the Codalab competition (see [below](#trial-phase))
 
@@ -40,15 +41,13 @@ In the trial phase, we are releasing an example input file and all the relevant 
 
 * [`gold`](/trial/gold) contains the reference files used by the competition evaluator to compare against and score the submitted files. These are just the plain text and outputs for each of the tasks.
 
-
-
 ## Training phase
 
 During the training phase the folder `training` will contain the reference files that are needed to train a model. Inside this folder you will find three sub-folders:
 
 * `input` contains all the `input_*.txt` files with plain text.
 * `gold` contains all the reference `output_*.txt` files for the three tasks, that you should use to train your models.
-* `dev` is an empty folder where you are expected to place your own `output_*.txt` for using the supplied [evaluation script](/score_training.py)
+* `submit` is an empty folder where you are expected to place your own `output_*.txt` for using the supplied [evaluation script](/score_training.py)
 
 ### Training data statistics
 
@@ -89,7 +88,7 @@ python3 score_training.py training_example
 
 ### Training submissions
 
-During the Training phase you are expected to submit the outputs your technique produces on the training set into Codalab to test the workflow and get used to the formats. Please make sure to try at least once to submit these files on your own. To prepare a submission, you should zip the contents on the `dev` folder in a `.zip` file and send them through Codalab's interface. The content of the `zip` file should be **only** the three folders `scenario*` with their respective content, as illustrated below:
+During the Training phase you are expected to submit the outputs your technique produces on the training set into Codalab to test the workflow and get used to the formats. Please make sure to try at least once to submit these files on your own. To prepare a submission, you should zip the contents on the `submit` folder in a `.zip` file and send them through Codalab's interface. The content of the `zip` file should be **only** the three folders `scenario*` with their respective content, as illustrated below:
 
 ```
 submission.zip/
@@ -104,7 +103,7 @@ submission.zip/
         output_C_*.txt
 ```
 
-> **Make sure** not to mistakenly zip the `dev` folder *itself*, but only **it's content**.
+> **Make sure** not to mistakenly zip the `submit` folder *itself*, but only **it's content**.
 
 For simplicity, there is `Makefile` that creates the right `zip`. Just running `make` inside the projects root folder should work.
 
@@ -118,11 +117,15 @@ To run it, `cd` into the `baseline` folder and execute:
 python3 main.py
 ```
 
-> **(!) BEWARE** that running this script will **overwrite** your `dev` folder with its output.
+> **(!) BEWARE** that running this script will **overwrite** your `submit` folder with its output.
+
+### Development corpus
+
+An additional 285 sentences are included in the `develop` folder. These sentences are also fully tagged, and are meant to be used for model selection and parameter tunning. We encourage participants to try different models, algorithms, and parameter settings. Each of these different variants should be trained on the **training corpus** only, and then their performance measured on the **development corpus**, to select the best variant. This separation ensures first a fair comparison among participants. Furthermore, comparting different models on a development corpus, independent from the training corpus, also helps reducing the risk of overfitting, and will give you a more accurate estimate of the actual performance of your models.
 
 ### Training score
 
-The file `score_test.py` performs the final evaluation exactly as described in the competition rules, i.e., according to the three evaluation scenarios presented. It assumes the reference files are in a `gold` subdirectory and the files to be submitted are in the `dev` folder, according to the folder structure presented there. This file's output is the one actually used in `Codalab` to rank competitors.
+The file `score_test.py` performs the final evaluation exactly as described in the competition rules, i.e., according to the three evaluation scenarios presented. It assumes the reference files are in a `gold` subdirectory and the files to be submitted are in the `submit` folder, according to the folder structure presented there. This file's output is the one actually used in `Codalab` to rank competitors.
 
 This script will output a file `score.txt` that contains the calculated metrics described in the `Overall evaluation...` section of the competition rules.
 
@@ -139,7 +142,7 @@ This folder will contain the **test** files divided in the corresponding scenari
     * `scenario2-BC` where you should place the `output_B_*.txt` and `output_C_*.txt` files for the scenario 2 evaluation.
     * `scenario3-C` where you should place the `output_C_*.txt` files for the scenario 3 evaluation.
 
-> **NOTE:** The testing data is not ready yet, but will be included in due time in the `testing` folder.
+> **NOTE:** The testing data is not ready yet, but will be included in due time in the `test` folder.
 
 ### Submissions
 
