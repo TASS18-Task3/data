@@ -137,28 +137,28 @@ This folder contains the **test** files divided in the corresponding scenarios, 
 
 * `input` contains the relevant input files:
     * `scenario1-ABC` contains **only** the `input_scenario1.txt`.
-    * `scenario2-BC` will contain input files **and** the corresponding `output_A_*.txt` files.
-    * `scenario3-C` will contain input files **and** the corresponding `output_A_*.txt` files **and also** the corresponding `output_B_*.txt` files .
+    * `scenario2-BC` will contain input files **and** the corresponding `output_A_scenario2.txt` files.
+    * `scenario3-C` will contain input files **and** the corresponding `output_A_scenario3.txt` files **and also** the corresponding `output_B_scenario3.txt` files .
 * `submit` will contain empty subfolders where you should place your output files:
-    * `scenario1-ABC` where you should place the `output_A_*.txt`, `output_B_*.txt` and `output_C_*.txt` files for the scenario 1 evaluation.
-    * `scenario2-BC` where you should place the `output_B_*.txt` and `output_C_*.txt` files for the scenario 2 evaluation.
-    * `scenario3-C` where you should place the `output_C_*.txt` files for the scenario 3 evaluation.
+    * `scenario1-ABC` where you should place the `output_A_scenario1.txt`, `output_B_scenario1.txt` and `output_C_scenario1.txt` files for the scenario 1 evaluation.
+    * `scenario2-BC` where you should place the `output_B_scenario2.txt` and `output_C_scenario2.txt` files for the scenario 2 evaluation.
+    * `scenario3-C` where you should place the `output_C_scenario3.txt` files for the scenario 3 evaluation.
 
 ### Submissions
 
 During the Test phase you are expected to submit the final outputs into Codalab to for grading. To prepare a submission, you should zip the contents on the `submit` folder in a `.zip` file and send them through Codalab's interface. The content of the `zip` file should be **only** the three folders `scenario*` with their respective content, as illustrated below:
 
 ```
-submission.zip/
+test.zip/
     scenario1-ABC/
-        output_A_trial.txt
-        output_B_trial.txt
-        output_C_trial.txt
+        output_A_scenario1.txt
+        output_B_scenario1.txt
+        output_C_scenario1.txt
     scenario2-BC/
-        output_B_trial.txt
-        output_C_trial.txt
+        output_B_scenario2.txt
+        output_C_scenario2.txt
     scenario3-C/
-        output_C_trial.txt
+        output_C_scenario3.txt
 ```
 
 [This file](https://github.com/TASS18-Task3/data/releases/download/trial-v1.0/sample_trial.zip) is a sample `.zip` with exactly the trial output in the exact format that should be uploaded to Codalab.
