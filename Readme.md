@@ -131,18 +131,18 @@ This script will output a file `score.txt` that contains the calculated metrics 
 
 ## Testing phase
 
-This folder will contain the **test** files divided in the corresponding scenarios, following the same structure as presented in the [trial folder](#trial-phase):
+> **(!)** The testing phase is already open in Codalab. This phase is blind reviewed, hence you won't be able to see your results until May 28th when all results will be published.
 
-* `input` will contain the relevant input files:
-    * `scenario1-ABC` will contain **only** `input_*.txt` files.
+This folder contains the **test** files divided in the corresponding scenarios, following the same structure as presented in the [trial folder](#trial-phase). For each evaluation scenario there is a single input file. Each file contains 100 sentences (300 sentences in total), randomly selected from the original corpus. None of these sentences have been published before either in the training or development corpora. However, the test corpus has been built with care, to guarantee there is a certain level of overlap (in terms of the concepts and relations) with the training and development corpora, but there are also brand new concepts and relations tuples which do not appear in the training set.
+
+* `input` contains the relevant input files:
+    * `scenario1-ABC` contains **only** the `input_scenario1.txt`.
     * `scenario2-BC` will contain input files **and** the corresponding `output_A_*.txt` files.
     * `scenario3-C` will contain input files **and** the corresponding `output_A_*.txt` files **and also** the corresponding `output_B_*.txt` files .
 * `submit` will contain empty subfolders where you should place your output files:
     * `scenario1-ABC` where you should place the `output_A_*.txt`, `output_B_*.txt` and `output_C_*.txt` files for the scenario 1 evaluation.
     * `scenario2-BC` where you should place the `output_B_*.txt` and `output_C_*.txt` files for the scenario 2 evaluation.
     * `scenario3-C` where you should place the `output_C_*.txt` files for the scenario 3 evaluation.
-
-> **NOTE:** The testing data is not ready yet, but will be included in due time in the `test` folder.
 
 ### Submissions
 
@@ -164,6 +164,8 @@ submission.zip/
 [This file](https://github.com/TASS18-Task3/data/releases/download/trial-v1.0/sample_trial.zip) is a sample `.zip` with exactly the trial output in the exact format that should be uploaded to Codalab.
 
 > **Make sure** not to mistakenly zip the `submit` folder *itself*, but only **it's content**.
+
+For your convenience, there is `Makefile` in the root project folder to help you prepare the submission data. Just run `make` and the content of the `test/submit` folder will be correctly zipped in the structure that Codalab is expecting.
 
 ## License
 
