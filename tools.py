@@ -162,6 +162,7 @@ def compare_labels(gold, dev, mapping):
         if not fidx in dev:
             missing.append(dict(id=idx, label=l))
             confussion_matrix[(l, 'None')] += 1
+            continue
 
         l2 = dev[fidx]
         confussion_matrix[(l, l2)] += 1

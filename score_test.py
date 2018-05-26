@@ -134,26 +134,41 @@ if __name__ == '__main__':
     # pprint.pprint(('Scenario 2', totals2))
     # pprint.pprint(('Scenario 3', totals3))
 
-    correct_1 = sum([totals1['correct_A'], totals1['correct_B'], totals1['correct_C'], 0.5 * totals1['partial_A']])
-    subtotal_1 = sum([totals1['partial_A'], totals1['correct_A'], totals1['correct_B'], totals1['incorrect_B'], totals1['correct_C']])
+    try:
+        correct_1 = sum([totals1['correct_A'], totals1['correct_B'], totals1['correct_C'], 0.5 * totals1['partial_A']])
+        subtotal_1 = sum([totals1['partial_A'], totals1['correct_A'], totals1['correct_B'], totals1['incorrect_B'], totals1['correct_C']])
 
-    abc_prec = correct_1 / sum([subtotal_1, totals1['spurious_A'], totals1['spurious_C']])
-    abc_rec = correct_1 / sum([subtotal_1, totals1['missing_A'], totals1['missing_C']])
-    abc_f1 = 2 * abc_prec * abc_rec / ( abc_prec + abc_rec )
+        abc_prec = correct_1 / sum([subtotal_1, totals1['spurious_A'], totals1['spurious_C']])
+        abc_rec = correct_1 / sum([subtotal_1, totals1['missing_A'], totals1['missing_C']])
 
-    correct_2 = sum([totals2['correct_B'], totals2['correct_C']])
-    subtotal_2 = sum([totals2['correct_B'], totals2['incorrect_B'], totals2['correct_C']])
+        abc_f1 = 2 * abc_prec * abc_rec / ( abc_prec + abc_rec )
 
-    bc_prec = correct_2 / sum([subtotal_2, totals2['spurious_C']])
-    bc_rec = correct_2 / sum([subtotal_2, totals2['missing_C']])
-    bc_f1 = 2 * bc_prec * bc_rec / ( bc_prec + bc_rec )
+    except ZeroDivisionError:
+        raise ValueError("It appears you have zero matches in Scenario 1. Please review you are providing the right output format.")
 
-    correct_3 = totals3['correct_C']
-    subtotal_3 = totals3['correct_C']
+    try:
+        correct_2 = sum([totals2['correct_B'], totals2['correct_C']])
+        subtotal_2 = sum([totals2['correct_B'], totals2['incorrect_B'], totals2['correct_C']])
 
-    c_prec = correct_3 / sum([subtotal_3, totals2['spurious_C']])
-    c_rec = correct_3 / sum([subtotal_3, totals2['missing_C']])
-    c_f1 = 2 * c_prec * c_rec / ( c_prec + c_rec )
+        bc_prec = correct_2 / sum([subtotal_2, totals2['spurious_C']])
+        bc_rec = correct_2 / sum([subtotal_2, totals2['missing_C']])
+
+        bc_f1 = 2 * bc_prec * bc_rec / ( bc_prec + bc_rec )
+
+    except ZeroDivisionError:
+        raise ValueError("It appears you have zero matches in Scenario 2. Please review you are providing the right output format and you are reusing the IDs for task A given in the file `output_A_scenario2.txt`.")
+
+    try:
+        correct_3 = totals3['correct_C']
+        subtotal_3 = totals3['correct_C']
+
+        c_prec = correct_3 / sum([subtotal_3, totals2['spurious_C']])
+        c_rec = correct_3 / sum([subtotal_3, totals2['missing_C']])
+
+        c_f1 = 2 * c_prec * c_rec / ( c_prec + c_rec )
+
+    except ZeroDivisionError:
+        raise ValueError("It appears you have zero matches in Scenario 3. Please review you are providing the right output format and you are reusing the IDs for task A and B given in the files `output_A_scenario3.txt` and `output_B_scenario3.txt`.")
 
     macro = sum([abc_f1, bc_f1, c_f1]) / 3
 
