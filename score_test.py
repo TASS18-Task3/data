@@ -47,9 +47,9 @@ def evaluate_1(name, gold, submit):
         gold_B = read_labels(os.path.join(gold, 'output_B_%s' % name))
         gold_C = read_links(os.path.join(gold, 'output_C_%s' % name))
 
-        submit_A = read_phrases(os.path.join(submit, 'scenario1-ABC', 'output_A_%s' % name))
-        submit_B = read_labels(os.path.join(submit, 'scenario1-ABC', 'output_B_%s' % name))
-        submit_C = read_links(os.path.join(submit, 'scenario1-ABC', 'output_C_%s' % name))
+        submit_A = read_phrases(os.path.join(submit, 'output_A_%s' % name))
+        submit_B = read_labels(os.path.join(submit, 'output_B_%s' % name))
+        submit_C = read_links(os.path.join(submit, 'output_C_%s' % name))
 
         return evaluate(gold_A, gold_B, gold_C, submit_A, submit_B, submit_C)
 
@@ -65,8 +65,8 @@ def evaluate_2(name, gold, submit):
         gold_C = read_links(os.path.join(gold, 'output_C_%s' % name))
 
         submit_A = gold_A
-        submit_B = read_labels(os.path.join(submit, 'scenario2-BC', 'output_B_%s' % name))
-        submit_C = read_links(os.path.join(submit, 'scenario2-BC', 'output_C_%s' % name))
+        submit_B = read_labels(os.path.join(submit, 'output_B_%s' % name))
+        submit_C = read_links(os.path.join(submit, 'output_C_%s' % name))
 
         return evaluate(gold_A, gold_B, gold_C, submit_A, submit_B, submit_C)
 
@@ -82,7 +82,7 @@ def evaluate_3(name, gold, submit):
 
         submit_A = gold_A
         submit_B = gold_B
-        submit_C = read_links(os.path.join(submit, 'scenario3-C', 'output_C_%s' % name))
+        submit_C = read_links(os.path.join(submit, 'output_C_%s' % name))
 
         return evaluate(gold_A, gold_B, gold_C, submit_A, submit_B, submit_C)
 
@@ -97,6 +97,7 @@ def update(dict_1, dict_2):
 
 if __name__ == '__main__':
     TESTING = False
+    DEVELOP = False
 
     if len(sys.argv) > 1:
         TESTING = True
@@ -105,6 +106,13 @@ if __name__ == '__main__':
             print('(!) Using `test/submit` as test files and `test/gold` as reference files.')
             gold = 'test/gold'
             submit = 'test/submit'
+            output = '.'
+        elif sys.argv[1] == '--develop':
+            DEVELOP = True
+
+            print('(!) Using `develop/submit` as test files and `develop/gold` as reference files.')
+            gold = 'develop/gold'
+            submit = 'develop/submit'
             output = '.'
         else:
             gold = os.path.join(sys.argv[1], 'ref')
@@ -126,14 +134,18 @@ if __name__ == '__main__':
     totals2 = collections.defaultdict(lambda: 0.0)
     totals3 = collections.defaultdict(lambda: 0.0)
 
-    if TESTING:
-        scenario1 = evaluate_1('scenario1.txt', os.path.join(gold, 'scenario1-ABC'), submit)
+    if DEVELOP:
+        scenario1 = evaluate_1('develop.txt', gold, submit)
         update(scenario1, totals1)
 
-        scenario2 = evaluate_2('scenario2.txt', os.path.join(gold, 'scenario2-BC'), submit)
+    elif TESTING:
+        scenario1 = evaluate_1('scenario1.txt', os.path.join(gold, 'scenario1-ABC'), os.path.join(submit, 'scenario1-ABC'))
+        update(scenario1, totals1)
+
+        scenario2 = evaluate_2('scenario2.txt', os.path.join(gold, 'scenario2-BC'), os.path.join(submit, 'scenario2-BC'))
         update(scenario2, totals2)
 
-        scenario3 = evaluate_3('scenario3.txt', os.path.join(gold, 'scenario3-C'), submit)
+        scenario3 = evaluate_3('scenario3.txt', os.path.join(gold, 'scenario3-C'), os.path.join(submit, 'scenario3-C'))
         update(scenario3, totals3)
 
     else:
