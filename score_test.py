@@ -127,6 +127,7 @@ def update(dict_1, dict_2):
 if __name__ == '__main__':
     TESTING = False
     DEVELOP = False
+    REAL = False
 
     if len(sys.argv) > 1:
         if sys.argv[1] == '--test':
@@ -146,6 +147,7 @@ if __name__ == '__main__':
             output = '.'
 
         else:
+            REAL = True
             gold = os.path.join(sys.argv[1], 'ref')
             submit = os.path.join(sys.argv[1], 'res')
 
@@ -169,7 +171,7 @@ if __name__ == '__main__':
         scenario1 = evaluate_1('develop.txt', gold, submit)
         update(scenario1, totals1)
 
-    elif TESTING:
+    elif TESTING or REAL:
         scenario1 = evaluate_1('scenario1.txt', os.path.join(gold, 'scenario1-ABC'), os.path.join(submit, 'scenario1-ABC'))
         update(scenario1, totals1)
 
