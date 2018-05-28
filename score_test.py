@@ -7,6 +7,13 @@ import random
 import pprint
 import collections
 
+
+try:
+    FileNotFoundError
+except NameError:
+    FileNotFoundError = IOError
+
+
 from tools import (get_span,
                    read_input,
                    read_phrases,
