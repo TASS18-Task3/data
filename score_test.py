@@ -24,10 +24,14 @@ from tools import (get_span,
                    compare_links)
 
 
+zero_dict = {}
+zero_list = []
+
+
 def evaluate(gold_A, gold_B, gold_C, submit_A, submit_B, submit_C):
-    result_A = compare_phrases(gold_A, submit_A)
-    result_B = compare_labels(gold_B, submit_B, result_A['mapping'])
-    result_C = compare_links(gold_C, submit_C, result_A['mapping'])
+    result_A = compare_phrases(gold_A, submit_A or zero_dict)
+    result_B = compare_labels(gold_B, submit_B or zero_dict, result_A['mapping'])
+    result_C = compare_links(gold_C, submit_C or zero_list, result_A['mapping'])
 
     return dict(
         correct_A=len(result_A['correct']),
@@ -42,53 +46,78 @@ def evaluate(gold_A, gold_B, gold_C, submit_A, submit_B, submit_C):
     )
 
 def evaluate_1(name, gold, submit):
-    try:
-        gold_A = read_phrases(os.path.join(gold, 'output_A_%s' % name))
-        gold_B = read_labels(os.path.join(gold, 'output_B_%s' % name))
-        gold_C = read_links(os.path.join(gold, 'output_C_%s' % name))
+    gold_A = read_phrases(os.path.join(gold, 'output_A_%s' % name))
+    gold_B = read_labels(os.path.join(gold, 'output_B_%s' % name))
+    gold_C = read_links(os.path.join(gold, 'output_C_%s' % name))
 
+    file_A = os.path.join(submit, 'output_A_%s' % name)
+    file_B = os.path.join(submit, 'output_B_%s' % name)
+    file_C = os.path.join(submit, 'output_C_%s' % name)
+
+    if os.path.exists(file_A):
         submit_A = read_phrases(os.path.join(submit, 'output_A_%s' % name))
+    else:
+        submit_A = None
+        print("It appears you did not submit scenario 1 output A. Please review.")
+
+    if os.path.exists(file_B):
         submit_B = read_labels(os.path.join(submit, 'output_B_%s' % name))
+    else:
+        submit_B = None
+        print("It appears you did not submit scenario 1 output B. Please review.")
+
+    if os.path.exists(file_C):
         submit_C = read_links(os.path.join(submit, 'output_C_%s' % name))
+    else:
+        submit_C = None
+        print("It appears you did not submit scenario 1 output C. Please review.")
 
-        return evaluate(gold_A, gold_B, gold_C, submit_A, submit_B, submit_C)
-
-    except FileNotFoundError:
-        print("It appears you did not submit scenario 1. Please review.")
-        return {}
+    return evaluate(gold_A, gold_B, gold_C, submit_A, submit_B, submit_C)
 
 
 def evaluate_2(name, gold, submit):
-    try:
-        gold_A = read_phrases(os.path.join(gold, 'output_A_%s' % name))
-        gold_B = read_labels(os.path.join(gold, 'output_B_%s' % name))
-        gold_C = read_links(os.path.join(gold, 'output_C_%s' % name))
+    gold_A = read_phrases(os.path.join(gold, 'output_A_%s' % name))
+    gold_B = read_labels(os.path.join(gold, 'output_B_%s' % name))
+    gold_C = read_links(os.path.join(gold, 'output_C_%s' % name))
 
-        submit_A = gold_A
+    file_B = os.path.join(submit, 'output_B_%s' % name)
+    file_C = os.path.join(submit, 'output_C_%s' % name)
+
+    submit_A = gold_A
+
+    if os.path.exists(file_B):
         submit_B = read_labels(os.path.join(submit, 'output_B_%s' % name))
+    else:
+        submit_B = None
+        print("It appears you did not submit scenario 2 output B. Please review.")
+
+    if os.path.exists(file_C):
         submit_C = read_links(os.path.join(submit, 'output_C_%s' % name))
+    else:
+        submit_C = None
+        print("It appears you did not submit scenario 2 output C. Please review.")
 
-        return evaluate(gold_A, gold_B, gold_C, submit_A, submit_B, submit_C)
+    return evaluate(gold_A, gold_B, gold_C, submit_A, submit_B, submit_C)
 
-    except FileNotFoundError:
-        print("It appears you did not submit scenario 2. Please review.")
-        return {}
 
 def evaluate_3(name, gold, submit):
-    try:
-        gold_A = read_phrases(os.path.join(gold, 'output_A_%s' % name))
-        gold_B = read_labels(os.path.join(gold, 'output_B_%s' % name))
-        gold_C = read_links(os.path.join(gold, 'output_C_%s' % name))
+    gold_A = read_phrases(os.path.join(gold, 'output_A_%s' % name))
+    gold_B = read_labels(os.path.join(gold, 'output_B_%s' % name))
+    gold_C = read_links(os.path.join(gold, 'output_C_%s' % name))
 
-        submit_A = gold_A
-        submit_B = gold_B
+    file_C = os.path.join(submit, 'output_C_%s' % name)
+
+    submit_A = gold_A
+    submit_B = gold_B
+
+    if os.path.exists(file_C):
         submit_C = read_links(os.path.join(submit, 'output_C_%s' % name))
+    else:
+        submit_C = None
+        print("It appears you did not submit scenario 3 output C. Please review.")
 
-        return evaluate(gold_A, gold_B, gold_C, submit_A, submit_B, submit_C)
+    return evaluate(gold_A, gold_B, gold_C, submit_A, submit_B, submit_C)
 
-    except FileNotFoundError:
-        print("It appears you did not submit scenario 3. Please review.")
-        return {}
 
 def update(dict_1, dict_2):
     for k,v in dict_1.items():
@@ -100,20 +129,22 @@ if __name__ == '__main__':
     DEVELOP = False
 
     if len(sys.argv) > 1:
-        TESTING = True
-
         if sys.argv[1] == '--test':
+            TESTING = True
             print('(!) Using `test/submit` as test files and `test/gold` as reference files.')
             gold = 'test/gold'
             submit = 'test/submit'
             output = '.'
+
         elif sys.argv[1] == '--develop':
+            TESTING = True
             DEVELOP = True
 
             print('(!) Using `develop/submit` as test files and `develop/gold` as reference files.')
             gold = 'develop/gold'
             submit = 'develop/submit'
             output = '.'
+
         else:
             gold = os.path.join(sys.argv[1], 'ref')
             submit = os.path.join(sys.argv[1], 'res')
@@ -162,9 +193,14 @@ if __name__ == '__main__':
                 scenario3 = evaluate_3(name, gold, submit)
                 update(scenario3, totals3)
 
-    # pprint.pprint(('Scenario 1', totals1))
-    # pprint.pprint(('Scenario 2', totals2))
-    # pprint.pprint(('Scenario 3', totals3))
+    if TESTING:
+        pprint.pprint(('Scenario 1', dict(totals1)))
+        pprint.pprint(('Scenario 2', dict(totals2)))
+        pprint.pprint(('Scenario 3', dict(totals3)))
+
+    abc_prec = 0
+    abc_rec = 0
+    abc_f1 = 0
 
     if totals1:
         try:
@@ -177,11 +213,11 @@ if __name__ == '__main__':
             abc_f1 = 2 * abc_prec * abc_rec / ( abc_prec + abc_rec )
 
         except ZeroDivisionError:
-            raise ValueError("It appears you have zero matches in Scenario 1. Please review you are providing the right output format.")
-    else:
-        abc_prec = 0
-        abc_rec = 0
-        abc_f1 = 0
+            print("It appears you have zero matches in Scenario 1. Please review you are providing the right output format.")
+
+    bc_prec = 0
+    bc_rec = 0
+    bc_f1 = 0
 
     if totals2:
         try:
@@ -194,11 +230,11 @@ if __name__ == '__main__':
             bc_f1 = 2 * bc_prec * bc_rec / ( bc_prec + bc_rec )
 
         except ZeroDivisionError:
-            raise ValueError("It appears you have zero matches in Scenario 2. Please review you are providing the right output format and you are reusing the IDs for task A given in the file `output_A_scenario2.txt`.")
-    else:
-        bc_prec = 0
-        bc_rec = 0
-        bc_f1 = 0
+            print("It appears you have zero matches in Scenario 2. Please review you are providing the right output format and you are reusing the IDs for task A given in the file `output_A_scenario2.txt`.")
+
+    c_prec = 0
+    c_rec = 0
+    c_f1 = 0
 
     if totals3:
         try:
@@ -211,24 +247,21 @@ if __name__ == '__main__':
             c_f1 = 2 * c_prec * c_rec / ( c_prec + c_rec )
 
         except ZeroDivisionError:
-            raise ValueError("It appears you have zero matches in Scenario 3. Please review you are providing the right output format and you are reusing the IDs for task A and B given in the files `output_A_scenario3.txt` and `output_B_scenario3.txt`.")
-    else:
-        c_prec = 0
-        c_rec = 0
-        c_f1 = 0
+            print("It appears you have zero matches in Scenario 3. Please review you are providing the right output format and you are reusing the IDs for task A and B given in the files `output_A_scenario3.txt` and `output_B_scenario3.txt`.")
 
     macro = sum([abc_f1, bc_f1, c_f1]) / 3
 
-    print('abc_prec:%.5f' % abc_prec)
-    print('abc_rec:%.5f' % abc_rec)
-    print('abc_f1:%.5f' % abc_f1)
-    print('bc_prec:%.5f' % bc_prec)
-    print('bc_rec:%.5f' % bc_rec)
-    print('bc_f1:%.5f' % bc_f1)
-    print('c_prec:%.5f' % c_prec)
-    print('c_rec:%.5f' % c_rec)
-    print('c_f1:%.5f' % c_f1)
-    print('macro:%.5f' % macro)
+    if TESTING:
+        print('abc_prec:%.5f' % abc_prec)
+        print('abc_rec:%.5f' % abc_rec)
+        print('abc_f1:%.5f' % abc_f1)
+        print('bc_prec:%.5f' % bc_prec)
+        print('bc_rec:%.5f' % bc_rec)
+        print('bc_f1:%.5f' % bc_f1)
+        print('c_prec:%.5f' % c_prec)
+        print('c_rec:%.5f' % c_rec)
+        print('c_f1:%.5f' % c_f1)
+        print('macro:%.5f' % macro)
 
     with open(os.path.join(output, 'scores.txt'), 'w') as fp:
         fp.write('abc_prec:%.5f\n'% abc_prec)
