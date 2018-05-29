@@ -243,8 +243,8 @@ if __name__ == '__main__':
             correct_3 = totals3['correct_C']
             subtotal_3 = totals3['correct_C']
 
-            c_prec = correct_3 / sum([subtotal_3, totals2['spurious_C']])
-            c_rec = correct_3 / sum([subtotal_3, totals2['missing_C']])
+            c_prec = correct_3 / sum([subtotal_3, totals3['spurious_C']])
+            c_rec = correct_3 / sum([subtotal_3, totals3['missing_C']])
 
             c_f1 = 2 * c_prec * c_rec / ( c_prec + c_rec )
 
