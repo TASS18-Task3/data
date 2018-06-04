@@ -50,8 +50,6 @@ def compute_taskC(d):
 
 
 def compute_scenario1(d):
-    d['total_macro'] = ( d['task_A_f1'] + d['task_B_acc'] + d['task_C_f1'] ) / 3
-
     total_pre = d['correct_A'] + d['partial_A'] + d['spurious_A'] + d['correct_B'] + d['incorrect_B'] + d['correct_C'] + d['spurious_C']
     total_rec = d['correct_A'] + d['partial_A'] + d['missing_A'] + d['correct_B'] + d['incorrect_B'] + d['correct_C'] + d['missing_C']
 
@@ -64,8 +62,6 @@ def compute_scenario1(d):
 
 
 def compute_scenario2(d):
-    d['total_macro'] = ( d['task_B_acc'] + d['task_C_f1'] ) / 2
-
     total_pre = d['correct_B'] + d['incorrect_B'] + d['correct_C'] + d['spurious_C']
     total_rec = d['correct_B'] + d['incorrect_B'] + d['correct_C'] + d['missing_C']
 
@@ -78,8 +74,6 @@ def compute_scenario2(d):
 
 
 def compute_scenario3(d):
-    d['total_macro'] = ( d['task_C_f1'] )
-
     total_pre = d['correct_C'] + d['spurious_C']
     total_rec = d['correct_C'] + d['missing_C']
 
@@ -89,6 +83,29 @@ def compute_scenario3(d):
     d['total_micro_pre'] = pre
     d['total_micro_rec'] = rec
     d['total_micro_f1'] = ( 2 * pre * rec ) / ( pre + rec ) if ( pre + rec > 0 ) else 0
+
+
+def compute_micro_f1(d1, d2, d3):
+    total_pre_1 = d1['correct_A'] + d1['partial_A'] + d1['spurious_A'] + d1['correct_B'] + d1['incorrect_B'] + d1['correct_C'] + d1['spurious_C']
+    total_rec_1 = d1['correct_A'] + d1['partial_A'] + d1['missing_A'] + d1['correct_B'] + d1['incorrect_B'] + d1['correct_C'] + d1['missing_C']
+    correct_1 = d1['correct_A'] + 0.5 * d1['partial_A'] + d1['correct_B'] + d1['correct_C']
+
+    total_pre_2 = d2['correct_B'] + d2['incorrect_B'] + d2['correct_C'] + d2['spurious_C']
+    total_rec_2 = d2['correct_B'] + d2['incorrect_B'] + d2['correct_C'] + d2['missing_C']
+    correct_2 = d2['correct_B'] + d2['correct_C']
+
+    total_pre_3 = d3['correct_C'] + d3['spurious_C']
+    total_rec_3 = d3['correct_C'] + d3['missing_C']
+    correct_3 = d3['correct_C']
+
+    total_pre = total_pre_1 + total_pre_2 + total_pre_3
+    total_rec = total_rec_1 + total_rec_2 + total_rec_3
+    correct = correct_1 + correct_2 + correct_3
+
+    pre = correct / total_pre if total_pre > 0 else 0
+    rec = correct / total_rec if total_rec > 0 else 0
+
+    return 2 * pre * rec / ( pre + rec ) if ( pre + rec ) > 0 else 0
 
 
 def evaluate_participant(submit_folder):
@@ -114,8 +131,9 @@ def evaluate_participant(submit_folder):
     update(result, scenario3, 'S3')
 
     result['Name'] = submit_folder.name.split('-')[0].strip()
-    result['Z-total macro'] = ( scenario1['total_macro'] + scenario2['total_macro'] + scenario3['total_macro'] ) / 3
-    result['Z-total micro'] = ( scenario1['total_micro_f1'] + scenario2['total_micro_f1'] + scenario3['total_micro_f1'] ) / 3
+    result['Z-average_f1'] = ( scenario1['total_micro_f1'] + scenario2['total_micro_f1'] + scenario3['total_micro_f1'] ) / 3
+    result['Z-average_tasks'] = ( scenario1['task_A_f1'] + scenario2['task_B_acc'] + scenario3['task_C_f1'] ) / 3
+    result['Z-micro_f1'] = compute_micro_f1(scenario1, scenario2, scenario3)
 
     return result
 
